@@ -1,50 +1,33 @@
 # Single-Cell RNA-seq Analysis Web App
 
-Web application for analyzing single-cell RNA sequencing data.
-
-## Tech Stack
-- Frontend: Next.js (Deployed on Vercel)
-- Backend: FastAPI (Deployed on Railway)
-- Database: PostgreSQL (Railway)
+A web application for analyzing single-cell RNA sequencing data with automatic quality control, clustering, and visualization.
 
 ## Features
-- Upload CSV or H5AD files (max 50MB)
-- Quality control and filtering
-- UMAP visualization
-- Clustering analysis (Leiden algorithm)
-- Marker gene identification
-- Interactive scatter plots
 
-## Project Structure
+- 📊 Upload CSV or H5AD files (max 50MB)
+- 🔬 Automatic quality control and filtering
+- 📈 PCA and UMAP dimensionality reduction
+- 🎯 Leiden clustering algorithm
+- 🧬 Marker gene identification
+- 📊 Interactive visualizations
 
-scrna-app/
-├── frontend/          # Next.js frontend
-│   ├── pages/        # React pages
-│   ├── components/   # React components
-│   └── package.json
-├── backend/          # FastAPI backend
-│   ├── main.py      # API endpoints
-│   ├── requirements.txt
-│   └── railway.json
-└── README.md
+## Tech Stack
+
+- **Frontend**: Next.js, React, Chart.js
+- **Backend**: FastAPI, Scanpy, PostgreSQL
+- **Deployment**: Vercel (frontend), Railway (backend)
+
+## Live Demo
+
+- Frontend: https://scrna-web-app.vercel.app
+- API: https://scrna-web-app-production.up.railway.app
 
 ## Local Development
 
 ### Backend
+```bash
 cd backend
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-uvicorn main:app --reload
-
-### Frontend
-cd frontend
-npm install
-npm run dev
-
-## Deployment
-- Frontend: Vercel
-- Backend: Railway
-
-## License
-MIT
+uvicorn main:app --reload --port 8000

@@ -28,21 +28,54 @@ export default function Chart({ data }) {
   };
 
   return (
-    <div>
+    <div className="chart-container">
       <h3>UMAP Visualization</h3>
-      <div style={{ height: '400px' }}>
+      <div style={{ height: '500px', width: '100%', maxWidth: '700px', margin: '0 auto' }}>
         <Scatter 
           data={scatterData}
           options={{
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: (context) => {
+                    const idx = context.dataIndex;
+                    const cluster = data.umap.clusters[idx];
+                    return `Cluster: ${cluster}`;
+                  }
+                }
+              }
+            },
             scales: {
-              x: { title: { display: true, text: 'UMAP 1' }},
-              y: { title: { display: true, text: 'UMAP 2' }}
+              x: {
+                title: {
+                  display: true,
+                  text: 'UMAP 1'
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'UMAP 2'
+                }
+              }
             }
           }}
         />
       </div>
+      <style jsx>{`
+        .chart-container {
+          margin: 2rem 0;
+        }
+        h3 {
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+      `}</style>
     </div>
   );
 }
